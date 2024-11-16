@@ -20,7 +20,7 @@ const builder = new addonBuilder({
   name: "Add-on de Filmes",
   catalogs: [],
   resources: ["stream"], // Suporte apenas para streams
-  types: ["movie"], // Adiciona suporte a filmes
+  types: ["movie", "series"], // Adiciona suporte a filmes
   idPrefixes: ["tt"], // Prefixos baseados no IMDb
 });
 
