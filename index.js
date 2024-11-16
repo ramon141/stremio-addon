@@ -1,4 +1,8 @@
-const { addonBuilder, serveHTTP } = require("stremio-addon-sdk");
+const {
+  addonBuilder,
+  serveHTTP,
+  publishToCentral,
+} = require("stremio-addon-sdk");
 const fs = require("fs");
 
 // Lê o arquivo output.json
