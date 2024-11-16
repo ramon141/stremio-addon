@@ -54,4 +54,6 @@ builder.defineStreamHandler(function (args) {
 
 // Inicia o servidor
 serveHTTP(builder.getInterface(), { port: process.env.PORT || 7000 });
-console.log("Add-on rodando em http://127.0.0.1:7000/manifest.json");
+publishToCentral(
+  "https://stremio-addon-production.up.railway.app/manifest.json"
+);
