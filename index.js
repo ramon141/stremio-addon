@@ -33,12 +33,12 @@ builder.defineStreamHandler(function (args) {
   if (args.type === "movie") {
     const movies = movieData.filter((item) => item.imdb_id === args.id);
 
-    const newUrl = movies.map((movie) => ({
-      ...movie,
-      url: `http://dnsfixo1.xyz/movie/27529388/22319562/${movie["xui-id"]}.mp4`,
+    const newMovies = movies.map((serie) => ({
+      ...serie,
+      title: serie.language === "portuguese" ? "🇧🇷" : "🇺🇸",
     }));
 
-    return Promise.resolve({ streams: newUrl });
+    return Promise.resolve({ streams: newMovies });
   } else {
     const [id, temp, episode] = args.id.split(":");
 
@@ -47,12 +47,12 @@ builder.defineStreamHandler(function (args) {
         item.imdb_id == id && item.season == temp && item.episode == episode
     );
 
-    const newUrl = series.map((serie) => ({
+    const newSeries = series.map((serie) => ({
       ...serie,
-      url: `http://dnsfixo1.xyz/series/27529388/22319562/${serie["xui-id"]}.mp4`,
+      title: serie.language === "portuguese" ? "🇧🇷" : "🇺🇸",
     }));
 
-    return Promise.resolve({ streams: newUrl });
+    return Promise.resolve({ streams: newSeries });
   }
 });
 
