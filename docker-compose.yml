@@ -16,8 +16,8 @@ services:
       - "traefik.http.routers.stremio-addon.tls.certresolver=letsencrypt"
       - "traefik.http.services.stremio-addon.loadbalancer.server.port=7000"
     networks:
-      - traefik-network
+      - traefik_network
 
 networks:
-  traefik-network:
+  traefik_network:
     external: true
