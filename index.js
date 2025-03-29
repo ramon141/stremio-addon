@@ -60,4 +60,7 @@ builder.defineStreamHandler(function (args) {
 serveHTTP(builder.getInterface(), { port: process.env.PORT || 7000 });
 publishToCentral(
   "https://stremio-addon.ramondev.site/manifest.json"
-);
+).catch(error => {
+  console.log("Erro ao publicar no Central:", error);
+  // O erro é registrado mas não interrompe o funcionamento do addon
+});
