@@ -8,10 +8,10 @@ const fs = require("fs");
 // Lê o arquivo output.json
 let movieData = [];
 try {
-  const data = fs.readFileSync("./all.json", "utf8");
+  const data = fs.readFileSync("./files.json", "utf8");
   movieData = JSON.parse(data); // Converte o JSON para um array
 } catch (err) {
-  console.error("Erro ao ler all.json:", err);
+  console.error("Erro ao ler files.json:", err);
 }
 
 const builder = new addonBuilder({
@@ -49,7 +49,7 @@ builder.defineStreamHandler(function (args) {
 
     const newSeries = series.map((serie) => ({
       ...serie,
-      title: serie.language === "portuguese" ? "🇧🇷" : "🇺🇸",
+      title: serie.language === "portuguese" ? "PT" : "EN",
     }));
 
     return Promise.resolve({ streams: newSeries });
@@ -59,5 +59,5 @@ builder.defineStreamHandler(function (args) {
 // Inicia o servidor
 serveHTTP(builder.getInterface(), { port: process.env.PORT || 7000 });
 publishToCentral(
-  "https://stremio-addon-production.up.railway.app/manifest.json"
+  "https://stremio-addon.ramondev.site/manifest.json"
 );
