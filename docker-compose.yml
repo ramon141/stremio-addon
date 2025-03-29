@@ -1,0 +1,23 @@
+version: '3'
+
+services:
+  stremio-addon:
+    build: .
+    container_name: stremio-addon
+    restart: unless-stopped
+    environment:
+      - PORT=7000
+    volumes:
+      - ./all.json:/app/all.json
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.stremio-addon.rule=Host(`stremio-addon.ramondev.site`)"
+      - "traefik.http.routers.stremio-addon.entrypoints=websecure"
+      - "traefik.http.routers.stremio-addon.tls.certresolver=letsencrypt"
+      - "traefik.http.services.stremio-addon.loadbalancer.server.port=7000"
+    networks:
+      - traefik-network
+
+networks:
+  traefik-network:
+    external: true
